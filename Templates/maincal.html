@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image" href="Screenshot (239).png">
+    <title>Calorify™</title>
+</head>
+<body>
+  <header class="text-gray-400 bg-black body-font">
+        <div class="container mx-auto flex flex-wrap p-4 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <span class="ml-3 text-3xl">Calorify™</span>
+        </a>
+          <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <a href = "index.html" class="mr-5 text-white hover:text-pink-400">Home</a>
+            <a href = "signup.html" class="mr-5 text-white hover:text-pink-400">Sign Up</a>
+            <a href = "support.html" class="mr-5 text-white hover:text-pink-400">Support</a>
+            <a href = "premium.html" class="mr-5 text-white hover:text-pink-400">Premium</a>
+          </nav>
+          <a href = "maincal.html">
+          <button class="inline-flex items-center bg-white border-0 py-1 px-3 focus:outline-none hover:bg-yellow-300 rounded text-black text-base mt-4 md:mt-0">Calculate
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button></a>
+        </div>
+    </header>
+<section>    
+  <style>
+  body{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+  }
+  .blue_button{background: none repeat scroll 0 0 green;border-bottom: 4px solid 
+      #3277BC;text-shadow: 1px 1px 0 #214D73;border: medium none;
+      border-radius: 0.3em;color: #FFFFFF;cursor: pointer;font-weight: bold;
+      margin: 10px 0;padding: 7px 14px;}
+  .frms input[type="text"], [type="password"], [type="file"], textarea, 
+  select {background: none repeat scroll 0 0 #fff;
+      border: 1px solid #ddd;border-radius: 0.35em;height: 35px;
+      margin-bottom: 15px;margin-top: 5px;padding: 0 0.5%;width: 99%;
+  }
+  .resp_code {background: black repeat scroll 0 0 pink;border: 3px solid black;
+      border-radius: 0.25em;color: #333;font: 1em/1.3em Tahoma,Geneva,sans-serif;
+      margin: 15px 10px 10px 25%;overflow:auto ;padding: 10px 20px;width:50%;
+  }
+  @media only screen and (max-width:650px) {.resp_code 
+      {margin: 5px 1px 10px !important;width:auto !important;}
+  }
+  </style>
+
+  <!--Script by hscripts.com-->
+  <!-- Free javascripts @ https://www.hscripts.com -->
+  <script type="text/javascript">
+  var cneed;
+  var fneed;
+  var crneed;
+  var pneed;
+  var aneed;
+  var fd;
+  function cc()
+  {
+  var age=parseInt(document.getElementById("age").value);
+  var wtype=document.getElementById("wtype").value;
+  var foot=parseInt(document.getElementById("foot").value);
+  var inch=parseInt(document.getElementById("inch").value);
+  var cm =document.getElementById("cen").value;
+  var weight=document.getElementById("weight").value;
+  if (age!='' && cm!='' && weight!='') {
+  if (wtype=="pounds")
+  {weight=parseInt(weight);
+  weight=Math.round(weight/2.2046);
+  }
+  var loa=document.getElementById("loa").value;
+  if(document.getElementById("gen").checked)
+  {
+  fd=(10*weight)+(6.25*cm)-(5*age)+5;
+  }
+  else
+  {
+  fd=(10*weight)+(6.25*cm)-(5*age)-161;
+  }
+  switch(loa)
+  {
+  case "1":
+  cneed=fd*1.2;
+  break;
+  case "2":
+  cneed=fd*1.375
+  break;
+  case "3":
+  cneed=fd*1.53;
+  break;
+  case "4":
+  cneed=fd*1.725;
+  break;
+  case "5":
+  cneed=fd*1.9;
+  break;
+  }
+  cneed=Math.floor(cneed);
+  //cneed1=Math.floor(cneed*0.0353);
+  fneed=Math.floor((cneed*0.25)/9);
+  if (wtype=="pounds")
+  {
+  fneed=Math.floor(fneed*0.0353);
+  //fneed=fneed*0.0022 ;
+  }
+  pneed=Math.floor((cneed*0.25)/4);
+  if (wtype=="pounds")
+  {
+  pneed=Math.floor(pneed*0.0353);
+  }
+  crneed=Math.floor((cneed*0.25)/4);
+  if (wtype=="pounds")
+  {
+  crneed=Math.floor(crneed*0.0353);
+  }
+  aneed=Math.floor((cneed*0.25)/7);
+  if (wtype=="pounds")
+  {
+  aneed=Math.floor(aneed*0.0353);
+  }
+  document.getElementById("rc").value=" "+cneed;
+  document.getElementById("rf").value=" "+fneed;
+  document.getElementById("rp").value=" "+pneed;
+  document.getElementById("rh").value=" "+crneed;
+  document.getElementById("ra").value=" "+aneed;
+  document.getElementById("l1").innerHTML="grams";
+  document.getElementById("l2").innerHTML="grams";
+  document.getElementById("l3").innerHTML="grams";
+  document.getElementById("l4").innerHTML="grams";
+  var caltype=document.getElementById("caltype").value;
+  if (caltype=='g') {
+  document.getElementById("l1").innerHTML="grams";
+  document.getElementById("l2").innerHTML="grams";
+  document.getElementById("l3").innerHTML="grams";
+  document.getElementById("l4").innerHTML="grams";
+  }
+  if (wtype=="pounds")
+  {
+  fat1 = fneed * 0.0022 ;
+  pro1 = pneed * 0.0022 ;
+  car1 = crneed * 0.0022 ;
+  alh1 = aneed * 0.0022 ;
+  fat1=fat1.toFixed(3);
+  pro1 = pro1.toFixed(3);
+  car1 = car1.toFixed(3);
+  alh1 = alh1.toFixed(3);
+  document.getElementById("rf").value=" "+fat1;
+  document.getElementById("rp").value=" "+pro1;
+  document.getElementById("rh").value=" "+car1;
+  document.getElementById("ra").value=" "+alh1;
+  document.getElementById("l1").innerHTML="lbs";
+  document.getElementById("l2").innerHTML="lbs";
+  document.getElementById("l3").innerHTML="lbs";
+  document.getElementById("l4").innerHTML="lbs";
+  }
+  if (caltype=='pounds') {
+  fat1 = fneed * 0.0022 ;
+  pro1 = pneed * 0.0022 ;
+  car1 = crneed * 0.0022 ;
+  alh1 = aneed * 0.0022 ;
+  fat1=fat1.toFixed(3);
+  pro1 = pro1.toFixed(3);
+  car1 = car1.toFixed(3);
+  alh1 = alh1.toFixed(3);
+  document.getElementById("rf").value=" "+fat1;
+  document.getElementById("rp").value=" "+pro1;
+  document.getElementById("rh").value=" "+car1;
+  document.getElementById("ra").value=" "+alh1;
+  document.getElementById("l1").innerHTML="lbs";
+  document.getElementById("l2").innerHTML="lbs";
+  document.getElementById("l3").innerHTML="lbs";
+  document.getElementById("l4").innerHTML="lbs";
+  }
+  if (caltype=='kg') {
+  fat2 = fneed / 1000;
+  pro2 = pneed / 1000;
+  car2 = crneed / 1000;
+  alh2 = aneed / 1000;
+  fat2=fat2.toFixed(3);
+  pro2 = pro2.toFixed(3);
+  car2 = car2.toFixed(3);
+  alh2 = alh2.toFixed(3);
+  document.getElementById("rf").value=" "+fat2;
+  document.getElementById("rp").value=" "+pro2;
+  document.getElementById("rh").value=" "+car2;
+  document.getElementById("ra").value=" "+alh2;
+  document.getElementById("l1").innerHTML="kilogram";
+  document.getElementById("l2").innerHTML="kilogram";
+  document.getElementById("l3").innerHTML="kilogram";
+  document.getElementById("l4").innerHTML="kilogram";
+  }
+  }
+  else{
+  alert("Please fill your details properly!");
+  }
+  }
+  function con(num)
+  {
+  var hc=parseInt(num.value);
+  var hi=hc/2.54;
+  var hf=Math.floor(hi/12);
+  var ri=Math.round(hi%12);
+  if(hc>40 && hc<=210)
+  {
+  document.getElementById("foot").value=hf;
+  }
+  document.getElementById("inch").value=ri;
+  }
+  function hcon()
+  {
+  var hf=parseInt(document.getElementById("foot").value);
+  var hi=parseInt(document.getElementById("inch").value);
+  var hc;
+  hc=Math.round((hf*30.48)+(hi*2.54));
+  document.getElementById("cen").value=hc;
+  }
+  function cknum(event,num)
+  {var kc;
+  if(window.event)
+  {
+  kc=event.keyCode;
+  }
+  else
+  {
+  kc=event.which;
+  }
+  var a=num.value;
+  if(kc==48)
+  {
+  if(a=="")
+  {
+  return false;
+  }
+  else
+  {
+  return true;
+  }
+  }if (kc!=8 && kc!=0)
+  {
+  if (kc<49||kc>57)
+  {
+  return false;
+  }
+  }
+  }
+  function isNumberKey(id)
+  {var no=eval('"'+id+'"');var number= document.getElementById(no).value; if(!number.match(/^[0-9\.]+$/) && number !=""){number = number.substring(0,number.length-1);document.getElementById(id).value = number;}
+  }
+  function convert() {
+  var age=parseInt(document.getElementById("age").value);
+  var cm =document.getElementById("cen").value;
+  var weight=document.getElementById("weight").value;
+  if (age!='' && cm!='' && weight!='') {
+  var caltype=document.getElementById("caltype").value;
+  var fat = document.getElementById("rf").value;
+  var pro = document.getElementById("rp").value;
+  var car = document.getElementById("rh").value;
+  var alh = document.getElementById("ra").value;
+  if (caltype=='g') {
+  document.getElementById("rc").value=" "+cneed;
+  document.getElementById("rf").value=" "+fneed;
+  document.getElementById("rp").value=" "+pneed;
+  document.getElementById("rh").value=" "+crneed;
+  document.getElementById("ra").value=" "+aneed;
+  document.getElementById("l1").innerHTML="grams";
+  document.getElementById("l2").innerHTML="grams";
+  document.getElementById("l3").innerHTML="grams";
+  document.getElementById("l4").innerHTML="grams";
+  }
+  if (caltype=='pounds') {
+  fat1 = fneed * 0.0022 ;
+  pro1 = pneed * 0.0022 ;
+  car1 = crneed * 0.0022 ;
+  alh1 = aneed * 0.0022 ;
+  fat1=fat1.toFixed(3);
+  pro1 = pro1.toFixed(3);
+  car1 = car1.toFixed(3);
+  alh1 = alh1.toFixed(3);
+  document.getElementById("rf").value=" "+fat1;
+  document.getElementById("rp").value=" "+pro1;
+  document.getElementById("rh").value=" "+car1;
+  document.getElementById("ra").value=" "+alh1;
+  document.getElementById("l1").innerHTML="lbs";
+  document.getElementById("l2").innerHTML="lbs";
+  document.getElementById("l3").innerHTML="lbs";
+  document.getElementById("l4").innerHTML="lbs";
+  }
+  if (caltype=='kg') {
+  fat2 = fneed / 1000;
+  pro2 = pneed / 1000;
+  car2 = crneed / 1000;
+  alh2 = aneed / 1000;
+  fat2=fat2.toFixed(3);
+  pro2 = pro2.toFixed(3);
+  car2 = car2.toFixed(3);
+  alh2 = alh2.toFixed(3);
+  document.getElementById("rf").value=" "+fat2;
+  document.getElementById("rp").value=" "+pro2;
+  document.getElementById("rh").value=" "+car2;
+  document.getElementById("ra").value=" "+alh2;
+  document.getElementById("l1").innerHTML="kilogram";
+  document.getElementById("l2").innerHTML="kilogram";
+  document.getElementById("l3").innerHTML="kilogram";
+  document.getElementById("l4").innerHTML="kilogram";
+  }
+  }
+  else{
+  alert("Please fill your details properly!");
+  }
+  }
+  function chk(){
+  var sds = document.getElementById('dum');
+  if(sds == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");
+  document.getElementById("tab").style.visibility="hidden";
+  }
+  var sdss = document.getElementById("dumdiv");
+  if(sdss == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");}
+      window.onload=chk;}
+  </script>
+  </head>
+  <body background = "pattern-background.jpg">
+  <div class='resp_code align='right''>
+  <table id ='tab' align='right' cellspacing='0' cellpadding='0' style="width:100%;">
+  <tr>
+  <td style = "color:black" align=center><b>Calorie Calculator</b><br><br>
+  <form name="frm" action="" class='frms noborders'>
+      <table><tr><td style="color:black; font-size:20px;"><b>Age:</b></td>
+      <td>
+      <input type="text" name="age" id="age" align="left" 
+      color = "black" size="4.6" maxlength="2" onkeypress="return cknum(event,age)"></td><td>
+      <font color="black" size="4.6"><b>years</b></font>
+      </td></tr
+      ><tr>
+      <td style="color: black; font-size:20px;"><b>Gender:</b></td>
+      <td><input type="radio" name="gen" id="gen" checked>
+          <font color="black" size="4.6"><b>Male </b></font>
+      <input type="radio" name="gen" id="gen">
+          <font color="black" size="4.6"><b>Female </b></font>
+          </td></tr><tr>
+      <td style="color: black; font-size:20px;"><b>Height:</b></td><td><select style='width:50%;' name="foot" id="foot" onchange="hcon()">
+      <option value="1"><b>1'</b></option><option value="2"><b>2'</b></option>
+      <option value="3"><b>3'</b></option><option value="4"><b>4'</b></option>
+      <option value="5"><b>5'</b></option><option value="6"><b>6'</b></option>
+      <option value="7"><b>7'</b></option></select><select style='width:50%;'name="inch" id="inch" onchange="hcon()">
+      <option value="1"><b>1"</b></option><option value="2"><b>2"</b></option>
+      <option value="3"><b>3"</b></option><option value="4"><b>4"</b></option>
+      <option value="5"><b>5"</b></option><option value="6"><b>6"</b></option>
+      <option value="7"><b>7"</b></option><option value="8"><b>8"</b></option>
+      <option value="9"><b>9"</b></option><option value="10"><b>10"</b></option>
+      <option value="11"><b>11"</b></option></select></td></tr><tr>
+      <td style="color: black; font-size:20px;"><b>Cms:</b></td>
+      <td><input type="text" name="cen" id="cen" size="4.6" onkeyup="con(cen)"></td></tr>
+      <tr><td style="color: black; font-size:20px;"><b>Weight:</b></td><td><input type="text" name="weight" id="weight" maxlength="3" size="3" onkeyup="isNumberKey(this.id)"></td>
+      <td>
+      <select style='width:102%;' name="wtype" id="wtype"><option value="kg"><b>Kg</b></option>
+      <option value="pounds"><b>Pounds</b></option></select></td></tr>
+      <tr><td style="color: black; font-size:20px;"><b>Activeness:</b></td><td>
+      <select style='width:150px;' name="loa" id="loa">
+      <option value="1"><b>Sedentary</b></option>
+      <option value="2"><b>Light Active</b></option
+      ><option value="3"><b>Moderate Active</b></option>
+      <option value="4"><b>Very Active</b></option>
+      <option value="5"><b>Extra Active</b></option>
+      </select></td></tr><tr>
+      <td colspan='5' align="center"><input class='blue_button' type="button" value="Calculate Calories!" onclick="cc()">
+      <span id="dumdiv" align="center" style=" font-size: 15px;color: black;">
+  <br>
+  <hr>
+  <table align="center" border="0" class="frms noborders">
+  <caption><b>Calorie Result<br></b></caption>
+  <tr><td align="right" style="color: black; font-size:20px;"><b>Calories Needed:</b></td><td>
+  <input type="text" id="rc" style="font-size:20px;" size="15" readonly></input>
+  </td></tr>
+
+  </table>
+  </div>
+  </section>
+</body>
+<br><br>
+<section>
+<footer class="text-gray-400 bg-black body-font">
+  <div class="container px-5 py-3 mx-auto flex items-center sm:flex-row flex-col">
+    <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+      
+      <span class="ml-3 text-3xl">Calorify™</span>
+    </a>
+    <p class="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-white sm:py-2 sm:mt-0 mt-4">© 2021 Calorify™—
+      <a href= "https://www.facebook.com/kunwarbhavesh.chauhan" class="text-white ml-1" target="_blank" rel="noopener noreferrer">@Bhavesh Chauhan</a>
+    </p>
+    <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+      <a href = "https://www.facebook.com/kunwarbhavesh.chauhan" class="text-white">
+        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+        </svg>
+      </a>
+      <a href = "https://bhaveshchauhan4.blogspot.com/" class="ml-3 text-white">
+        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+        </svg>
+      </a>
+      <a href = "https://www.facebook.com/kunwarbhavesh.chauhan" class="ml-3 text-white">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+        </svg>
+      </a>
+      <a href = "https://t.me/joinchat/bZTa0QqZsQNmZmM1" class="ml-3 text-white">
+        <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+          <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+          <circle cx="4" cy="4" r="2" stroke="none"></circle>
+        </svg>
+      </a>
+    </span>
+  </div>
+</footer>
+</section>
+</html>
+
